@@ -1,0 +1,9 @@
+{
+    "clusterArns": [
+        "arn:aws:ecs:us-east-2:148849676838:cluster/AWSBatch-trutufi-compute-environment-282a8db6-bef1-3125-9192-76ef16841048",
+        "arn:aws:ecs:us-east-2:148849676838:cluster/AWSBatch-benchmark-environment-dcce67e7-e748-3659-bd80-b0e3e589388f",
+        "arn:aws:ecs:us-east-2:148849676838:cluster/AWSBatch-trutufi-sync-account-compute-environment-dedb19c2-f592-3045-a1b3-c3f76f2c9868",
+        "arn:aws:ecs:us-east-2:148849676838:cluster/AWSBatch-analytics-compute-environment-bf11c407-3149-3bd7-9a89-284198ae046b",
+        "arn:aws:ecs:us-east-2:148849676838:cluster/wholefin-platform-cluster"
+    ]
+}

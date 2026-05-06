@@ -2,63 +2,31 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_vpc" "main" {
-  cidr_block           = var.vpc_cidr
-  enable_dns_hostnames = true
-  enable_dns_support   = true
-
-  tags = {
-    Name = "Dev-vpc"
-  }
+module "vpc" {
+  source               = "./modules/vpc"
+  aws_region           = var.aws_region
+  vpc_cidr             = "10.11.0.0/16"
+  public_subnet_cidrs  = ["10.11.0.0/24", "10.11.1.0/24", "10.11.2.0/24"]
+  private_subnet_cidrs = ["10.11.3.0/24", "10.11.4.0/24", "10.11.5.0/24", "10.11.6.0/24"]
 }
 
-resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.main.id
-
-  tags = {
-    Name = "Dev-igw"
-  }
+module "compute" {
+  source          = "./modules/compute"
+  vpc_id          = module.vpc.vpc_id
+  public_subnets  = module.vpc.public_subnet_ids
+  private_subnets = module.vpc.private_subnet_ids
+  
+  depends_on = [module.vpc]
 }
 
-resource "aws_subnet" "public" {
-  count             = length(var.public_subnet_cidrs)
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.public_subnet_cidrs[count.index]
-  availability_zone = element(var.availability_zones, count.index)
+module "database" {
+  source          = "./modules/database"
+  vpc_id          = module.vpc.vpc_id
+  private_subnets = module.vpc.private_subnet_ids
 
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name = "Dev-public-subnet-${count.index + 1}"
-  }
+  depends_on = [module.vpc]
 }
 
-resource "aws_subnet" "private" {
-  count             = length(var.private_subnet_cidrs)
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.private_subnet_cidrs[count.index]
-  availability_zone = element(var.availability_zones, count.index)
-
-  tags = {
-    Name = "Dev-private-subnet-${count.index + 1}"
-  }
-}
-
-resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.main.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main.id
-  }
-
-  tags = {
-    Name = "Dev-public-rt"
-  }
-}
-
-resource "aws_route_table_association" "public" {
-  count          = length(aws_subnet.public)
-  subnet_id      = aws_subnet.public[count.index].id
-  route_table_id = aws_route_table.public.id
+module "serverless" {
+  source = "./modules/serverless"
 }

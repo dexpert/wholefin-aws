@@ -1,0 +1,15 @@
+{
+    "serviceArns": [
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/email-service",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/account-service",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/truthifi-account-linking-service",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/ips-service",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/apex-service",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/users-service",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/data-service",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/analytics-service",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/agent-service",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/kong",
+        "arn:aws:ecs:us-east-2:148849676838:service/wholefin-platform-cluster/file-service"
+    ]
+}

@@ -1,0 +1,160 @@
+{
+    "DBClusters": [
+        {
+            "AllocatedStorage": 1,
+            "AvailabilityZones": [
+                "us-east-2b",
+                "us-east-2c",
+                "us-east-2a"
+            ],
+            "BackupRetentionPeriod": 7,
+            "DBClusterIdentifier": "dev-db",
+            "DBClusterParameterGroup": "aurora-pg17-uuidv7",
+            "DBSubnetGroup": "db-subnets",
+            "Status": "available",
+            "EarliestRestorableTime": "2026-04-29T05:14:26.233000+00:00",
+            "Endpoint": "dev-db.cluster-c7uw80mgi3om.us-east-2.rds.amazonaws.com",
+            "ReaderEndpoint": "dev-db.cluster-ro-c7uw80mgi3om.us-east-2.rds.amazonaws.com",
+            "MultiAZ": false,
+            "Engine": "aurora-postgresql",
+            "EngineVersion": "17.4",
+            "LatestRestorableTime": "2026-05-06T21:07:13.932000+00:00",
+            "Port": 5432,
+            "MasterUsername": "postgres",
+            "PreferredBackupWindow": "05:05-05:35",
+            "PreferredMaintenanceWindow": "wed:07:34-wed:08:04",
+            "UpgradeRolloutOrder": "second",
+            "ReadReplicaIdentifiers": [],
+            "DBClusterMembers": [
+                {
+                    "DBInstanceIdentifier": "dev-db-instance-1",
+                    "IsClusterWriter": true,
+                    "DBClusterParameterGroupStatus": "in-sync",
+                    "PromotionTier": 1
+                }
+            ],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-0247a4e94e679a6c5",
+                    "Status": "active"
+                }
+            ],
+            "HostedZoneId": "Z2XHWR1WZ565X2",
+            "StorageEncrypted": true,
+            "StorageEncryptionType": "sse-kms",
+            "KmsKeyId": "arn:aws:kms:us-east-2:148849676838:key/b5e0bf76-8b8c-40c9-87e8-6320845095dc",
+            "DbClusterResourceId": "cluster-3JVUEDS7U3RQWWB2TTPQ4AR6O4",
+            "DBClusterArn": "arn:aws:rds:us-east-2:148849676838:cluster:dev-db",
+            "AssociatedRoles": [],
+            "IAMDatabaseAuthenticationEnabled": false,
+            "ClusterCreateTime": "2025-12-04T08:53:37.455000+00:00",
+            "EngineMode": "provisioned",
+            "AutoMinorVersionUpgrade": true,
+            "DeletionProtection": false,
+            "HttpEndpointEnabled": true,
+            "ActivityStreamStatus": "stopped",
+            "CopyTagsToSnapshot": true,
+            "CrossAccountClone": false,
+            "DomainMemberships": [],
+            "TagList": [],
+            "NetworkType": "IPV4",
+            "ServerlessV2ScalingConfiguration": {
+                "MinCapacity": 0.5,
+                "MaxCapacity": 4.0
+            },
+            "ServerlessV2PlatformVersion": "3",
+            "MonitoringInterval": 60,
+            "MonitoringRoleArn": "arn:aws:iam::148849676838:role/rds-monitoring-role",
+            "DatabaseInsightsMode": "standard",
+            "PerformanceInsightsEnabled": true,
+            "PerformanceInsightsKMSKeyId": "arn:aws:kms:us-east-2:148849676838:key/b5e0bf76-8b8c-40c9-87e8-6320845095dc",
+            "PerformanceInsightsRetentionPeriod": 7,
+            "MasterUserSecret": {
+                "SecretArn": "arn:aws:secretsmanager:us-east-2:148849676838:secret:rds!cluster-e229aeaa-85ee-4fc7-b100-4870ef5d6db8-7nbyMy",
+                "SecretStatus": "active",
+                "KmsKeyId": "arn:aws:kms:us-east-2:148849676838:key/48004f54-fd1e-44ab-b138-4f2fa56a2e80"
+            },
+            "LocalWriteForwardingStatus": "disabled",
+            "EngineLifecycleSupport": "open-source-rds-extended-support-disabled",
+            "VPCNetworkingEnabled": true
+        },
+        {
+            "AllocatedStorage": 1,
+            "AvailabilityZones": [
+                "us-east-2b",
+                "us-east-2c",
+                "us-east-2a"
+            ],
+            "BackupRetentionPeriod": 7,
+            "DBClusterIdentifier": "eyal-db",
+            "DBClusterParameterGroup": "default.aurora-postgresql17",
+            "DBSubnetGroup": "db-subnets",
+            "Status": "available",
+            "EarliestRestorableTime": "2026-04-29T05:17:16.494000+00:00",
+            "Endpoint": "eyal-db.cluster-c7uw80mgi3om.us-east-2.rds.amazonaws.com",
+            "ReaderEndpoint": "eyal-db.cluster-ro-c7uw80mgi3om.us-east-2.rds.amazonaws.com",
+            "MultiAZ": false,
+            "Engine": "aurora-postgresql",
+            "EngineVersion": "17.4",
+            "LatestRestorableTime": "2026-05-06T21:06:00.057000+00:00",
+            "Port": 5432,
+            "MasterUsername": "postgres",
+            "PreferredBackupWindow": "05:04-05:34",
+            "PreferredMaintenanceWindow": "tue:10:14-tue:10:44",
+            "UpgradeRolloutOrder": "second",
+            "ReadReplicaIdentifiers": [],
+            "DBClusterMembers": [
+                {
+                    "DBInstanceIdentifier": "eyal-db-instance-1",
+                    "IsClusterWriter": true,
+                    "DBClusterParameterGroupStatus": "in-sync",
+                    "PromotionTier": 1
+                }
+            ],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-0247a4e94e679a6c5",
+                    "Status": "active"
+                }
+            ],
+            "HostedZoneId": "Z2XHWR1WZ565X2",
+            "StorageEncrypted": true,
+            "StorageEncryptionType": "sse-kms",
+            "KmsKeyId": "arn:aws:kms:us-east-2:148849676838:key/b5e0bf76-8b8c-40c9-87e8-6320845095dc",
+            "DbClusterResourceId": "cluster-3W2D4WGMTEGJZJ2IK4R5IH5L7I",
+            "DBClusterArn": "arn:aws:rds:us-east-2:148849676838:cluster:eyal-db",
+            "AssociatedRoles": [],
+            "IAMDatabaseAuthenticationEnabled": false,
+            "ClusterCreateTime": "2025-12-04T09:05:03.711000+00:00",
+            "EngineMode": "provisioned",
+            "AutoMinorVersionUpgrade": true,
+            "DeletionProtection": false,
+            "HttpEndpointEnabled": false,
+            "ActivityStreamStatus": "stopped",
+            "CopyTagsToSnapshot": true,
+            "CrossAccountClone": false,
+            "DomainMemberships": [],
+            "TagList": [],
+            "NetworkType": "IPV4",
+            "ServerlessV2ScalingConfiguration": {
+                "MinCapacity": 0.5,
+                "MaxCapacity": 4.0
+            },
+            "ServerlessV2PlatformVersion": "3",
+            "MonitoringInterval": 60,
+            "MonitoringRoleArn": "arn:aws:iam::148849676838:role/rds-monitoring-role",
+            "DatabaseInsightsMode": "standard",
+            "PerformanceInsightsEnabled": true,
+            "PerformanceInsightsKMSKeyId": "arn:aws:kms:us-east-2:148849676838:key/b5e0bf76-8b8c-40c9-87e8-6320845095dc",
+            "PerformanceInsightsRetentionPeriod": 7,
+            "MasterUserSecret": {
+                "SecretArn": "arn:aws:secretsmanager:us-east-2:148849676838:secret:rds!cluster-8c700f0b-3210-4f24-b4b0-e31b7ec9de43-MRthdh",
+                "SecretStatus": "active",
+                "KmsKeyId": "arn:aws:kms:us-east-2:148849676838:key/48004f54-fd1e-44ab-b138-4f2fa56a2e80"
+            },
+            "LocalWriteForwardingStatus": "disabled",
+            "EngineLifecycleSupport": "open-source-rds-extended-support-disabled",
+            "VPCNetworkingEnabled": true
+        }
+    ]
+}

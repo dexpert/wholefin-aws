@@ -1,0 +1,23 @@
+{
+    "Buckets": [
+        {
+            "Name": "dev.wholefin.ai",
+            "CreationDate": "2026-04-29T08:20:15+00:00",
+            "BucketArn": "arn:aws:s3:::dev.wholefin.ai"
+        },
+        {
+            "Name": "wholefin-platform-dev",
+            "CreationDate": "2026-04-29T00:26:48+00:00",
+            "BucketArn": "arn:aws:s3:::wholefin-platform-dev"
+        },
+        {
+            "Name": "wholefin-platform-documents-dev",
+            "CreationDate": "2026-04-29T07:24:53+00:00",
+            "BucketArn": "arn:aws:s3:::wholefin-platform-documents-dev"
+        }
+    ],
+    "Owner": {
+        "ID": "88661111b157c348b84c1d91837f0530153105fbf6fb4042329800ff8125d051"
+    },
+    "Prefix": null
+}
