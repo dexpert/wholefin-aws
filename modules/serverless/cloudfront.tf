@@ -15,8 +15,9 @@
   #   cached_methods         = ["GET", "HEAD"]
   # }
 
-  viewer_certificate {
-    cloudfront_default_certificate = true
+    viewer_certificate {
+    acm_certificate_arn = "arn:aws:acm:us-east-1:844486820647:certificate/ab25ec34-e2b5-4fd4-a884-67f2591c525a"
+    ssl_support_method  = "sni-only"
   }
 
   restrictions {
@@ -47,8 +48,9 @@
   #   cached_methods         = ["GET", "HEAD"]
   # }
 
-  viewer_certificate {
-    cloudfront_default_certificate = true
+    viewer_certificate {
+    acm_certificate_arn = "arn:aws:acm:us-east-1:844486820647:certificate/ab25ec34-e2b5-4fd4-a884-67f2591c525a"
+    ssl_support_method  = "sni-only"
   }
 
   restrictions {
