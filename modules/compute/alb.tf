@@ -7,7 +7,7 @@ resource "aws_lb" "alb" {
   subnets            = var.public_subnets
 
   tags = {
-    Name = "${var.environment}-alb"
+    Name        = "${var.environment}-alb"
     Environment = var.environment
   }
 }
