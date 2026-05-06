@@ -1,0 +1,64 @@
+
+resource "aws_cloudfront_distribution" "dist_E2ZM4DKR4HO3UC" {
+  enabled = true
+
+  # Origin configuration would map to the actual origins defined in AWS
+  # origin {
+  #   domain_name = "example.s3.amazonaws.com"
+  #   origin_id   = "exampleS3Origin"
+  # }
+
+  # default_cache_behavior {
+  #   target_origin_id       = "exampleS3Origin"
+  #   viewer_protocol_policy = "redirect-to-https"
+  #   allowed_methods        = ["GET", "HEAD", "OPTIONS"]
+  #   cached_methods         = ["GET", "HEAD"]
+  # }
+
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  tags = {
+    Id = "E2ZM4DKR4HO3UC"
+    Domain = "d15hde004kk9fp.cloudfront.net"
+  }
+}
+
+resource "aws_cloudfront_distribution" "dist_E30WYSA5VMIHY5" {
+  enabled = true
+
+  # Origin configuration would map to the actual origins defined in AWS
+  # origin {
+  #   domain_name = "example.s3.amazonaws.com"
+  #   origin_id   = "exampleS3Origin"
+  # }
+
+  # default_cache_behavior {
+  #   target_origin_id       = "exampleS3Origin"
+  #   viewer_protocol_policy = "redirect-to-https"
+  #   allowed_methods        = ["GET", "HEAD", "OPTIONS"]
+  #   cached_methods         = ["GET", "HEAD"]
+  # }
+
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  tags = {
+    Id = "E30WYSA5VMIHY5"
+    Domain = "d9zlqdnghhxjw.cloudfront.net"
+  }
+}
