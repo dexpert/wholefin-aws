@@ -30,7 +30,7 @@ resource "aws_security_group" "db" {
 }
 
 
-resource "aws_db_instance" "${var.environment}_db_instance_1" {
+resource "aws_db_instance" "db_instance_1" {
   identifier           = "${var.environment}-db-instance-1"
   engine               = "aurora-postgresql"
   engine_version       = "17.4"
