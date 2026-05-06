@@ -8,7 +8,7 @@ resource "aws_ecs_cluster" "platform" {
   }
 }
 
-resource "aws_ecs_service" "email_service" {
+/* resource "aws_ecs_service" "email_service" {
   name            = "email-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -20,9 +20,9 @@ resource "aws_ecs_service" "email_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
 
-resource "aws_ecs_service" "account_service" {
+/* resource "aws_ecs_service" "account_service" {
   name            = "account-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -34,9 +34,9 @@ resource "aws_ecs_service" "account_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
 
-resource "aws_ecs_service" "truthifi_account_linking_service" {
+/* resource "aws_ecs_service" "truthifi_account_linking_service" {
   name            = "truthifi-account-linking-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -48,9 +48,9 @@ resource "aws_ecs_service" "truthifi_account_linking_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
 
-resource "aws_ecs_service" "ips_service" {
+/* resource "aws_ecs_service" "ips_service" {
   name            = "ips-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -62,9 +62,9 @@ resource "aws_ecs_service" "ips_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
 
-resource "aws_ecs_service" "apex_service" {
+/* resource "aws_ecs_service" "apex_service" {
   name            = "apex-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -76,9 +76,9 @@ resource "aws_ecs_service" "apex_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
 
-resource "aws_ecs_service" "users_service" {
+/* resource "aws_ecs_service" "users_service" {
   name            = "users-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -90,9 +90,9 @@ resource "aws_ecs_service" "users_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
 
-resource "aws_ecs_service" "data_service" {
+/* resource "aws_ecs_service" "data_service" {
   name            = "data-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -104,9 +104,9 @@ resource "aws_ecs_service" "data_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
 
-resource "aws_ecs_service" "analytics_service" {
+/* resource "aws_ecs_service" "analytics_service" {
   name            = "analytics-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -118,9 +118,9 @@ resource "aws_ecs_service" "analytics_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
 
-resource "aws_ecs_service" "agent_service" {
+/* resource "aws_ecs_service" "agent_service" {
   name            = "agent-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -132,7 +132,7 @@ resource "aws_ecs_service" "agent_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
 
 resource "aws_ecs_service" "kong" {
   name            = "kong"
@@ -154,7 +154,7 @@ resource "aws_ecs_service" "kong" {
   }
 }
 
-resource "aws_ecs_service" "file_service" {
+/* resource "aws_ecs_service" "file_service" {
   name            = "file-service"
   cluster         = aws_ecs_cluster.platform.id
   # task_definition = aws_ecs_task_definition.example.arn
@@ -166,4 +166,5 @@ resource "aws_ecs_service" "file_service" {
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }
-}
+} */
+
