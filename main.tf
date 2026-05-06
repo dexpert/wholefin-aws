@@ -16,6 +16,7 @@ module "compute" {
   public_subnets  = module.vpc.public_subnet_ids
   private_subnets = module.vpc.private_subnet_ids
   
+  vpc_cidr = module.vpc.vpc_cidr
   depends_on = [module.vpc]
 }
 
@@ -24,6 +25,7 @@ module "database" {
   vpc_id          = module.vpc.vpc_id
   private_subnets = module.vpc.private_subnet_ids
 
+  vpc_cidr = module.vpc.vpc_cidr
   depends_on = [module.vpc]
 }
 

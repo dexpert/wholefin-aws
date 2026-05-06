@@ -15,11 +15,11 @@ resource "aws_ecs_service" "email_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "account_service" {
@@ -29,11 +29,11 @@ resource "aws_ecs_service" "account_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "truthifi_account_linking_service" {
@@ -43,11 +43,11 @@ resource "aws_ecs_service" "truthifi_account_linking_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "ips_service" {
@@ -57,11 +57,11 @@ resource "aws_ecs_service" "ips_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "apex_service" {
@@ -71,11 +71,11 @@ resource "aws_ecs_service" "apex_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "users_service" {
@@ -85,11 +85,11 @@ resource "aws_ecs_service" "users_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "data_service" {
@@ -99,11 +99,11 @@ resource "aws_ecs_service" "data_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "analytics_service" {
@@ -113,11 +113,11 @@ resource "aws_ecs_service" "analytics_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "agent_service" {
@@ -127,11 +127,11 @@ resource "aws_ecs_service" "agent_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "kong" {
@@ -141,11 +141,11 @@ resource "aws_ecs_service" "kong" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
 
 resource "aws_ecs_service" "file_service" {
@@ -155,9 +155,9 @@ resource "aws_ecs_service" "file_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  # network_configuration {
-  #   subnets          = aws_subnet.private[*].id
-  #   security_groups  = [aws_security_group.ecs_tasks.id]
-  #   assign_public_ip = false
-  # }
+  network_configuration {
+    subnets          = var.private_subnets
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
 }
