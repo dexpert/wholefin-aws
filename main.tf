@@ -6,9 +6,9 @@ module "vpc" {
   environment = var.environment
   source               = "./modules/vpc"
   aws_region           = var.aws_region
-  vpc_cidr             = "10.11.0.0/16"
-  public_subnet_cidrs  = ["10.11.0.0/24", "10.11.1.0/24", "10.11.2.0/24"]
-  private_subnet_cidrs = ["10.11.3.0/24", "10.11.4.0/24", "10.11.5.0/24", "10.11.6.0/24"]
+  vpc_cidr             = "10.20.0.0/16"
+  public_subnet_cidrs  = ["10.20.0.0/24", "10.20.1.0/24", "10.20.2.0/24"]
+  private_subnet_cidrs = ["10.20.3.0/24", "10.20.4.0/24", "10.20.5.0/24", "10.20.6.0/24"]
 }
 
 module "compute" {
