@@ -38,7 +38,6 @@ resource "aws_db_instance" "dev_db_instance_1" {
   allocated_storage    = 1
   username             = "admin"
   password             = "TempPassword123!"
-  manage_master_user_password = false
   skip_final_snapshot  = true
 
   # Assuming standard VPC security group and subnet groups
@@ -59,7 +58,6 @@ resource "aws_db_instance" "eyal_db_instance_1" {
   allocated_storage    = 1
   username             = "admin"
   password             = "TempPassword123!"
-  manage_master_user_password = false
   skip_final_snapshot  = true
 
   # Assuming standard VPC security group and subnet groups

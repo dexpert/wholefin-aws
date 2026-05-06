@@ -1,5 +1,5 @@
 
-resource "aws_cloudfront_distribution" "dist_E2ZM4DKR4HO3UC" {
+/* resource "aws_cloudfront_distribution" "dist_E2ZM4DKR4HO3UC" {
   enabled = true
 
   # Origin configuration would map to the actual origins defined in AWS
@@ -31,7 +31,7 @@ resource "aws_cloudfront_distribution" "dist_E2ZM4DKR4HO3UC" {
   }
 }
 
-resource "aws_cloudfront_distribution" "dist_E30WYSA5VMIHY5" {
+/* resource "aws_cloudfront_distribution" "dist_E30WYSA5VMIHY5" {
   enabled = true
 
   # Origin configuration would map to the actual origins defined in AWS
@@ -62,3 +62,5 @@ resource "aws_cloudfront_distribution" "dist_E30WYSA5VMIHY5" {
     Domain = "d9zlqdnghhxjw.cloudfront.net"
   }
 }
+
+*/

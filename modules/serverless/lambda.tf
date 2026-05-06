@@ -1,5 +1,5 @@
 
-resource "aws_lambda_function" "truthifi_endpoint" {
+/* resource "aws_lambda_function" "truthifi_endpoint" {
   function_name = "truthifi-endpoint"
   runtime       = "nodejs18.x"
   handler       = "index.handler"
@@ -14,7 +14,7 @@ resource "aws_lambda_function" "truthifi_endpoint" {
   }
 }
 
-resource "aws_lambda_function" "truthifi_endpoint2" {
+/* resource "aws_lambda_function" "truthifi_endpoint2" {
   function_name = "truthifi-endpoint2"
   runtime       = "nodejs18.x"
   handler       = "index.handler"
@@ -28,3 +28,5 @@ resource "aws_lambda_function" "truthifi_endpoint2" {
     Name = "truthifi-endpoint2"
   }
 }
+
+*/

@@ -1,0 +1,4 @@
+.terraform/
+*.tfstate*
+tfplan
+raw_aws_data/
