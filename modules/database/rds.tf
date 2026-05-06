@@ -1,11 +1,11 @@
 
 resource "aws_db_subnet_group" "default" {
-  name       = "main-db-subnet-group"
+  name       = "${var.environment}-db-subnet-group"
   subnet_ids = var.private_subnets
 }
 
 resource "aws_security_group" "db" {
-  name        = "rds-sg"
+  name        = "${var.environment}-rds-sg"
   description = "Allow inbound database traffic"
   vpc_id      = var.vpc_id
 
@@ -30,8 +30,8 @@ resource "aws_security_group" "db" {
 }
 
 
-resource "aws_db_instance" "dev_db_instance_1" {
-  identifier           = "dev-db-instance-1"
+resource "aws_db_instance" "${var.environment}_db_instance_1" {
+  identifier           = "${var.environment}-db-instance-1"
   engine               = "aurora-postgresql"
   engine_version       = "17.4"
   instance_class       = "db.serverless"
@@ -45,8 +45,8 @@ resource "aws_db_instance" "dev_db_instance_1" {
   db_subnet_group_name   = aws_db_subnet_group.default.name
 
   tags = {
-    Name = "dev-db-instance-1"
-    Environment = "Dev"
+    Name = "${var.environment}-db-instance-1"
+    Environment = var.environment
   }
 }
 

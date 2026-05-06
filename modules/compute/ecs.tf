@@ -1,6 +1,6 @@
 
 resource "aws_ecs_cluster" "platform" {
-  name = "wholefin-platform-cluster"
+  name = "${var.environment}-wholefin-platform-cluster"
 
   setting {
     name  = "containerInsights"

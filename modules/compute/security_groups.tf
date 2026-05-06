@@ -1,6 +1,6 @@
 
 resource "aws_security_group" "lb_sg" {
-  name        = "alb-sg"
+  name        = "${var.environment}-alb-sg"
   description = "Allow HTTP/HTTPS inbound"
   vpc_id      = var.vpc_id
 
@@ -25,7 +25,7 @@ resource "aws_security_group" "lb_sg" {
 }
 
 resource "aws_security_group" "ecs_tasks" {
-  name        = "ecs-tasks-sg"
+  name        = "${var.environment}-ecs-tasks-sg"
   description = "Allow inbound from ALB"
   vpc_id      = var.vpc_id
 

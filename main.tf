@@ -3,6 +3,7 @@ provider "aws" {
 }
 
 module "vpc" {
+  environment = var.environment
   source               = "./modules/vpc"
   aws_region           = var.aws_region
   vpc_cidr             = "10.11.0.0/16"
@@ -11,6 +12,7 @@ module "vpc" {
 }
 
 module "compute" {
+  environment = var.environment
   source          = "./modules/compute"
   vpc_id          = module.vpc.vpc_id
   public_subnets  = module.vpc.public_subnet_ids
@@ -21,6 +23,7 @@ module "compute" {
 }
 
 module "database" {
+  environment = var.environment
   source          = "./modules/database"
   vpc_id          = module.vpc.vpc_id
   private_subnets = module.vpc.private_subnet_ids
@@ -30,5 +33,6 @@ module "database" {
 }
 
 module "serverless" {
+  environment = var.environment
   source = "./modules/serverless"
 }

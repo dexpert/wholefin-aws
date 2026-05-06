@@ -8,7 +8,7 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags = {
-    Name = "Dev-vpc"
+    Name = "${var.environment}-vpc"
   }
 }
 
@@ -16,7 +16,7 @@ resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "Dev-igw"
+    Name = "${var.environment}-igw"
   }
 }
 
@@ -29,7 +29,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "Dev-public-subnet-${count.index + 1}"
+    Name = "${var.environment}-public-subnet-${count.index + 1}"
   }
 }
 
@@ -40,7 +40,7 @@ resource "aws_subnet" "private" {
   availability_zone = element(var.availability_zones, count.index)
 
   tags = {
-    Name = "Dev-private-subnet-${count.index + 1}"
+    Name = "${var.environment}-private-subnet-${count.index + 1}"
   }
 }
 
@@ -53,7 +53,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "Dev-public-rt"
+    Name = "${var.environment}-public-rt"
   }
 }
 
