@@ -37,9 +37,9 @@ resource "aws_rds_cluster" "main" {
   engine_mode             = "provisioned"
   engine_version          = "17.4"
   database_name           = "wholefin"
-  master_username         = "dbadmin"
-  master_password         = "TempPassword123!"
-  skip_final_snapshot     = true
+  master_username              = "dbadmin"
+  manage_master_user_password  = true  # AWS creates + manages secret in Secrets Manager automatically
+  skip_final_snapshot          = true
 
   vpc_security_group_ids  = [aws_security_group.db.id]
   db_subnet_group_name    = aws_db_subnet_group.default.name
