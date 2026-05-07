@@ -4,7 +4,7 @@
 
 resource "aws_cognito_user_pool" "main" {
   name                     = "User pool - ${var.environment}"
-  deletion_protection      = "ACTIVE"
+  deletion_protection      = "INACTIVE"
   username_attributes      = []
   auto_verified_attributes = ["email"]
   mfa_configuration        = "OFF"

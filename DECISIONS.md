@@ -115,6 +115,64 @@
 
 ---
 
+## 🌿 Terragrunt Migration (2026-05-07)
+
+### Decision: Migrate to Terragrunt
+- **הנמקה:** DRY backend config, dependency ordering אוטומטי, folder = environment
+- **הגישה:** modules/ נשארים ללא שינוי — רק מוסיפים `live/` layer מעל
+
+### מבנה חדש
+```
+wholefin-aws/
+├── modules/          ← unchanged
+├── terragrunt.hcl    ← root (remote_state + provider generation)
+└── live/
+    ├── sand/
+    │   ├── account.hcl   ← env values (replaces sand.tfvars)
+    │   ├── vpc/
+    │   ├── iam/
+    │   ├── secrets/
+    │   ├── compute/
+    │   ├── database/
+    │   ├── lambda/
+    │   ├── serverless/
+    │   └── cognito/
+    ├── dev/
+    ├── stage/
+    └── prod/
+```
+
+### Dependency graph (אוטומטי עם terragrunt)
+```
+vpc ──────────────────┐
+iam ──────────────┐   ├──→ compute ──→ serverless ──→ cognito
+secrets           └───┘         ↑
+lambda ───────────────────────────→ serverless
+database ←── vpc
+```
+
+### פקודות
+```bash
+# apply סביבה שלמה (בסדר נכון אוטומטי)
+cd live/sand && terragrunt run-all apply
+
+# module ספציפי
+cd live/sand/vpc && terragrunt apply
+
+# plan הכל
+cd live/sand && terragrunt run-all plan
+```
+
+### Migration status
+- [x] root `terragrunt.hcl` (remote_state + provider gen)
+- [x] `account.hcl` לכל env (sand/dev/stage/prod)
+- [x] כל modules של sand מ-scaffold
+- [ ] dev/stage/prod — לעשות mirror מ-sand
+- [ ] לבדוק עם `terragrunt run-all validate` על sand
+- [ ] להסיר `backend.tf` ו-`*.tfvars` הישנים אחרי migration
+
+---
+
 ## 📋 TODO / Open Questions
 
 - [ ] להעביר DB password ל-Secrets Manager לפני prod
