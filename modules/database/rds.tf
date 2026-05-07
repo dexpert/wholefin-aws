@@ -30,19 +30,37 @@ resource "aws_security_group" "db" {
 }
 
 
-resource "aws_db_instance" "db_instance_1" {
-  identifier          = "${var.environment}-db-instance-1"
-  engine              = "aurora-postgresql"
-  engine_version      = "17.4"
-  instance_class      = "db.serverless"
-  allocated_storage   = 1
-  username             = "dbadmin"
-  password            = "TempPassword123!"
-  skip_final_snapshot = true
+# Aurora cluster (required parent for Aurora instances)
+resource "aws_rds_cluster" "main" {
+  cluster_identifier      = "${var.environment}-aurora-cluster"
+  engine                  = "aurora-postgresql"
+  engine_mode             = "provisioned"
+  engine_version          = "17.4"
+  database_name           = "wholefin"
+  master_username         = "dbadmin"
+  master_password         = "TempPassword123!"
+  skip_final_snapshot     = true
 
-  # Assuming standard VPC security group and subnet groups
-  vpc_security_group_ids = [aws_security_group.db.id]
-  db_subnet_group_name   = aws_db_subnet_group.default.name
+  vpc_security_group_ids  = [aws_security_group.db.id]
+  db_subnet_group_name    = aws_db_subnet_group.default.name
+
+  serverlessv2_scaling_configuration {
+    max_capacity = 1.0
+    min_capacity = 0.5
+  }
+
+  tags = {
+    Name        = "${var.environment}-aurora-cluster"
+    Environment = var.environment
+  }
+}
+
+resource "aws_rds_cluster_instance" "db_instance_1" {
+  identifier         = "${var.environment}-db-instance-1"
+  cluster_identifier = aws_rds_cluster.main.id
+  instance_class     = "db.serverless"
+  engine             = aws_rds_cluster.main.engine
+  engine_version     = aws_rds_cluster.main.engine_version
 
   tags = {
     Name        = "${var.environment}-db-instance-1"
