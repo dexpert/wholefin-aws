@@ -366,14 +366,15 @@ resource "aws_service_discovery_service" "kong" {
 }
 
 resource "aws_ecs_service" "kong" {
-  name    = "kong"
-  cluster = aws_ecs_cluster.platform.id
+  name            = "kong"
+  cluster         = aws_ecs_cluster.platform.id
   task_definition = aws_ecs_task_definition.kong.arn
-  desired_count = 1
-  launch_type   = "FARGATE"
+  desired_count   = 1
+  launch_type     = "FARGATE"
 
   network_configuration {
-    subnets          = var.private_subnets
+    # AZ a preferred (first subnet); fall back to all app subnets if needed.
+    subnets          = slice(var.private_subnets, 0, 1)
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = false
   }

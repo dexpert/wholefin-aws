@@ -62,6 +62,9 @@ resource "aws_rds_cluster_instance" "db_instance_1" {
   engine             = aws_rds_cluster.main.engine
   engine_version     = aws_rds_cluster.main.engine_version
 
+  # Prefer AZ a when possible
+  availability_zone = "${var.aws_region}a"
+
   tags = {
     Name        = "${var.environment}-db-instance-1"
     Environment = var.environment
