@@ -58,14 +58,23 @@ module "database" {
   depends_on      = [module.vpc]
 }
 
+module "lambda" {
+  source      = "./modules/lambda"
+  environment = var.environment
+  aws_region  = var.aws_region
+}
+
 module "serverless" {
-  environment         = var.environment
-  source              = "./modules/serverless"
-  alb_dns_name        = module.compute.alb_dns_name
-  acm_certificate_arn = var.acm_certificate_arn
+  environment                  = var.environment
+  source                       = "./modules/serverless"
+  alb_dns_name                 = module.compute.alb_dns_name
+  acm_certificate_arn          = var.acm_certificate_arn
+  truthifi_lambda_url_hostname = module.lambda.function_url_hostname
 
   providers = {
     aws           = aws
     aws.us_east_1 = aws.us_east_1
   }
+
+  depends_on = [module.lambda]
 }

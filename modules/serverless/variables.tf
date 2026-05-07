@@ -11,3 +11,8 @@ variable "acm_certificate_arn" {
   description = "ACM certificate ARN in us-east-1 for the CloudFront alias (wildcard *.wholefin.ai)"
   type        = string
 }
+
+variable "truthifi_lambda_url_hostname" {
+  description = "Hostname of the truthifi-endpoint Lambda Function URL (without https:// and trailing slash)"
+  type        = string
+}
