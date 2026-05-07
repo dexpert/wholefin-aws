@@ -39,6 +39,7 @@ resource "aws_rds_cluster" "main" {
   database_name           = "wholefin"
   master_username              = "dbadmin"
   manage_master_user_password  = true  # AWS creates + manages secret in Secrets Manager automatically
+  storage_encrypted            = true   # Encrypt storage at rest using AWS managed key (aws/rds)
   skip_final_snapshot          = true
 
   vpc_security_group_ids  = [aws_security_group.db.id]
