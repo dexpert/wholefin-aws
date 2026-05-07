@@ -26,6 +26,11 @@ module "iam" {
   environment = var.environment
 }
 
+module "secrets" {
+  source      = "./modules/secrets"
+  environment = var.environment
+}
+
 module "cognito" {
   source            = "./modules/cognito"
   environment       = var.environment
