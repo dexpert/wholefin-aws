@@ -35,7 +35,7 @@ resource "aws_rds_cluster" "main" {
   cluster_identifier      = "${var.environment}-aurora-cluster"
   engine                  = "aurora-postgresql"
   engine_mode             = "provisioned"
-  engine_version          = "17.4"
+  engine_version          = "17.9"
   database_name           = "wholefin"
   master_username              = "dbadmin"
   manage_master_user_password  = true  # AWS creates + manages secret in Secrets Manager automatically
