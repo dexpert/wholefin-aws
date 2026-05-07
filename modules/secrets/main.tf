@@ -19,9 +19,31 @@ resource "aws_secretsmanager_secret" "app" {
 resource "aws_secretsmanager_secret_version" "app" {
   secret_id = aws_secretsmanager_secret.app.id
 
-  # Placeholder - update manually after first deploy
+  # All keys mirrored from dev - values must be updated manually after first deploy
   secret_string = jsonencode({
-    PLACEHOLDER = "UPDATE_REQUIRED"
+    "PROFILE_SERVICE/MY_SECRET"     = "UPDATE_REQUIRED"
+    "DB_CONNECTION_STRING_URI"      = "UPDATE_REQUIRED"
+    "DB_USER"                       = "UPDATE_REQUIRED"
+    "DB_PASS"                       = "UPDATE_REQUIRED"
+    "DEVOPS_USER"                   = "UPDATE_REQUIRED"
+    "DEVOPS_PASS"                   = "UPDATE_REQUIRED"
+    "DB_DEVOPS_CONNECTION_STRING_URI" = "UPDATE_REQUIRED"
+    "DB_CONNECTION_STRING"          = "UPDATE_REQUIRED"
+    "SMTP_USERNAME"                 = "UPDATE_REQUIRED"
+    "SMTP_PASSWORD"                 = "UPDATE_REQUIRED"
+    "COGNITO_CLIENT_SECRET"         = "UPDATE_REQUIRED"
+    "INVITE_JWT_SECRET_KEY"         = "UPDATE_REQUIRED"
+    "APEX_PRIVATE_KEY_SNBX"         = "UPDATE_REQUIRED"
+    "APEX_API_KEY_SNBX"             = "UPDATE_REQUIRED"
+    "OPENAI_API_KEY"                = "UPDATE_REQUIRED"
+    "ANTHROPIC_API_KEY"             = "UPDATE_REQUIRED"
+    "APEX_PRIVATE_KEY"              = "UPDATE_REQUIRED"
+    "APEX_API_KEY"                  = "UPDATE_REQUIRED"
+    "TRUTHIFI_ORG_TOKEN"            = "UPDATE_REQUIRED"
+    "TRUTHIFI_WEBHOOK_API_KEY"      = "UPDATE_REQUIRED"
+    "TRUTHIFI_WEBHOOK_HMAC_SECRET"  = "UPDATE_REQUIRED"
+    "FRED_API_KEY"                  = "UPDATE_REQUIRED"
+    "SERVICE_ACCOUNT_ID"            = "UPDATE_REQUIRED"
   })
 
   lifecycle {
