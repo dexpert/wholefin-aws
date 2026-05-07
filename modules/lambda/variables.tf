@@ -13,16 +13,5 @@ variable "ecr_mgmt_account_id" {
   default     = "934853894604"
 }
 
-variable "truthifi_api_key" {
-  description = "API key for truthifi-endpoint Lambda (stored in SSM SecureString)"
-  type        = string
-  sensitive   = true
-  default     = "PLACEHOLDER_UPDATE_REQUIRED"
-}
-
-variable "truthifi_hmac_secret" {
-  description = "HMAC secret for truthifi-endpoint Lambda (stored in SSM SecureString)"
-  type        = string
-  sensitive   = true
-  default     = "PLACEHOLDER_UPDATE_REQUIRED"
-}
+# API_KEY and HMAC_SECRET are read from Secrets Manager at runtime
+# (TRUTHIFI_WEBHOOK_API_KEY and TRUTHIFI_WEBHOOK_HMAC_SECRET keys in 'secrets' SM secret)

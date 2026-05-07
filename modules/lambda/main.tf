@@ -69,29 +69,8 @@ resource "aws_iam_role_policy" "lambda_ecr" {
   })
 }
 
-# ---------- SSM Parameters (secrets) ----------
-
-resource "aws_ssm_parameter" "api_key" {
-  name  = "/lambda/truthifi-endpoint/API_KEY"
-  type  = "SecureString"
-  value = var.truthifi_api_key
-
-  tags = {
-    Name        = "truthifi-endpoint-api-key"
-    Environment = var.environment
-  }
-}
-
-resource "aws_ssm_parameter" "hmac_secret" {
-  name  = "/lambda/truthifi-endpoint/HMAC_SECRET"
-  type  = "SecureString"
-  value = var.truthifi_hmac_secret
-
-  tags = {
-    Name        = "truthifi-endpoint-hmac-secret"
-    Environment = var.environment
-  }
-}
+# API_KEY and HMAC_SECRET are read at runtime from Secrets Manager
+# using keys TRUTHIFI_WEBHOOK_API_KEY and TRUTHIFI_WEBHOOK_HMAC_SECRET
 
 # ---------- CloudWatch Log Group ----------
 
@@ -119,8 +98,7 @@ resource "aws_lambda_function" "truthifi_endpoint" {
   environment {
     variables = {
       ENVIRONMENT = var.environment
-      API_KEY     = aws_ssm_parameter.api_key.value
-      HMAC_SECRET = aws_ssm_parameter.hmac_secret.value
+      SECRET_NAME = "secrets" # Lambda reads API_KEY + HMAC_SECRET from SM at runtime
     }
   }
 
@@ -130,7 +108,8 @@ resource "aws_lambda_function" "truthifi_endpoint" {
 
   depends_on = [
     aws_cloudwatch_log_group.lambda,
-    aws_iam_role_policy_attachment.lambda_basic
+    aws_iam_role_policy_attachment.lambda_basic,
+    aws_iam_role_policy_attachment.lambda_secrets
   ]
 
   tags = {
