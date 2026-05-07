@@ -39,12 +39,22 @@ generate "provider" {
   contents  = <<EOF
 provider "aws" {
   region = "${local.aws_region}"
+
+  assume_role {
+    role_arn     = "arn:aws:iam::${local.account_id}:role/Danny-TF"
+    external_id  = "52a15c10-bcf9-43f4-aa7b-dbb937267218"
+  }
 }
 
 # CloudFront + WAFv2 (CLOUDFRONT scope) must live in us-east-1
 provider "aws" {
   alias  = "us_east_1"
   region = "us-east-1"
+
+  assume_role {
+    role_arn     = "arn:aws:iam::${local.account_id}:role/Danny-TF"
+    external_id  = "52a15c10-bcf9-43f4-aa7b-dbb937267218"
+  }
 }
 EOF
 }
