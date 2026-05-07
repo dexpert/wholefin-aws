@@ -36,7 +36,7 @@ resource "aws_db_instance" "db_instance_1" {
   engine_version      = "17.4"
   instance_class      = "db.serverless"
   allocated_storage   = 1
-  username            = "admin"
+  username             = "dbadmin"
   password            = "TempPassword123!"
   skip_final_snapshot = true
 
