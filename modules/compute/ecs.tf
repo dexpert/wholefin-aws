@@ -9,22 +9,55 @@ resource "aws_ecs_cluster" "platform" {
 
 
 resource "aws_ecs_task_definition" "kong" {
-  family                   = "${var.environment}-kong"
+  family                   = "kong"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu                      = "256"
-  memory                   = "512"
+  cpu                      = "512"
+  memory                   = "2048"
+  task_role_arn            = var.ecs_task_role_arn
+  execution_role_arn       = var.ecs_execution_role_arn
+
+  runtime_platform {
+    cpu_architecture        = "X86_64"
+    operating_system_family = "LINUX"
+  }
 
   container_definitions = jsonencode([
     {
-      name  = "kong"
-      image = "kong:latest"
+      name      = "kong"
+      image     = "${var.ecr_mgmt_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/wholefin-platform-kong:latest"
+      essential = true
+
       portMappings = [
         {
           containerPort = 80
           hostPort      = 80
+          protocol      = "tcp"
+          name          = "main"
+          appProtocol   = "http"
         }
       ]
+
+      environment = [
+        { name = "AWS_REGION",  value = var.aws_region },
+        { name = "ENVIRONMENT", value = var.environment }
+      ]
+
+      secrets = [
+        {
+          name      = "COGNITO_JWKS_URL"
+          valueFrom = "arn:aws:ssm:${var.aws_region}:${var.account_id}:parameter/COGNITO_JWKS_URL"
+        }
+      ]
+
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = "/ecs/kong"
+          "awslogs-region"        = var.aws_region
+          "awslogs-stream-prefix" = "ecs"
+        }
+      }
     }
   ])
 }

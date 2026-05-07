@@ -8,6 +8,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
+data "aws_caller_identity" "current" {}
+
 module "vpc" {
   environment         = var.environment
   source              = "./modules/vpc"
@@ -19,15 +21,31 @@ module "vpc" {
   data_subnet_cidrs   = ["10.20.20.0/24", "10.20.21.0/24"]
 }
 
-module "compute" {
-  environment     = var.environment
-  source          = "./modules/compute"
-  vpc_id          = module.vpc.vpc_id
-  public_subnets  = module.vpc.public_subnet_ids
-  private_subnets = module.vpc.app_subnet_ids # ECS runs in app tier
+module "iam" {
+  source      = "./modules/iam"
+  environment = var.environment
+}
 
-  vpc_cidr   = module.vpc.vpc_cidr
-  depends_on = [module.vpc]
+module "cognito" {
+  source            = "./modules/cognito"
+  environment       = var.environment
+  aws_region        = var.aws_region
+  cloudfront_domain = module.serverless.cloudfront_domain
+  depends_on        = [module.serverless]
+}
+
+module "compute" {
+  environment            = var.environment
+  source                 = "./modules/compute"
+  aws_region             = var.aws_region
+  account_id             = data.aws_caller_identity.current.account_id
+  vpc_id                 = module.vpc.vpc_id
+  public_subnets         = module.vpc.public_subnet_ids
+  private_subnets        = module.vpc.app_subnet_ids # ECS runs in app tier
+  vpc_cidr               = module.vpc.vpc_cidr
+  ecs_task_role_arn      = module.iam.ecs_task_role_arn
+  ecs_execution_role_arn = module.iam.ecs_execution_role_arn
+  depends_on             = [module.vpc, module.iam]
 }
 
 module "database" {
@@ -36,9 +54,8 @@ module "database" {
   aws_region      = var.aws_region
   vpc_id          = module.vpc.vpc_id
   private_subnets = module.vpc.data_subnet_ids # RDS runs in data tier
-
-  vpc_cidr   = module.vpc.vpc_cidr
-  depends_on = [module.vpc]
+  vpc_cidr        = module.vpc.vpc_cidr
+  depends_on      = [module.vpc]
 }
 
 module "serverless" {
@@ -48,7 +65,7 @@ module "serverless" {
   acm_certificate_arn = var.acm_certificate_arn
 
   providers = {
-    aws            = aws
-    aws.us_east_1  = aws.us_east_1
+    aws           = aws
+    aws.us_east_1 = aws.us_east_1
   }
 }

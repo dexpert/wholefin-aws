@@ -108,7 +108,7 @@ resource "aws_cognito_user_pool_client" "main" {
 # ---------- User Pool Domain ----------
 
 resource "aws_cognito_user_pool_domain" "main" {
-  domain       = "${var.environment}wholefincognito"
+  domain       = "${var.environment}-wholefin-auth"
   user_pool_id = aws_cognito_user_pool.main.id
 }
 
