@@ -27,6 +27,8 @@ remote_state {
     region         = local.aws_region
     dynamodb_table = "wholefin-tfstate-lock"
     encrypt        = true
+    role_arn       = "arn:aws:iam::${local.account_id}:role/Danny-TF"
+    external_id    = "52a15c10-bcf9-43f4-aa7b-dbb937267218"
   }
 }
 
