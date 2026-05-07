@@ -98,7 +98,8 @@ resource "aws_lambda_function" "truthifi_endpoint" {
   environment {
     variables = {
       ENVIRONMENT = var.environment
-      SECRET_NAME = "secrets" # Lambda reads API_KEY + HMAC_SECRET from SM at runtime
+      API_KEY     = "UPDATE_REQUIRED"
+      HMAC_SECRET = "UPDATE_REQUIRED"
     }
   }
 
