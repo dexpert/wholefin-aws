@@ -2,3 +2,7 @@
 *.tfstate*
 tfplan
 raw_aws_data/
+.terragrunt-cache/
+.terraform/
+*.tfstate
+*.tfstate.backup
