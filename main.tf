@@ -14,11 +14,11 @@ module "vpc" {
   environment         = var.environment
   source              = "./modules/vpc"
   aws_region          = var.aws_region
-  vpc_cidr            = "10.20.0.0/16"
+  vpc_cidr            = var.vpc_cidr
   availability_zones  = ["a", "b"]
-  public_subnet_cidrs = ["10.20.0.0/24", "10.20.1.0/24"]
-  app_subnet_cidrs    = ["10.20.10.0/24", "10.20.11.0/24"]
-  data_subnet_cidrs   = ["10.20.20.0/24", "10.20.21.0/24"]
+  public_subnet_cidrs = var.public_subnet_cidrs
+  app_subnet_cidrs    = var.app_subnet_cidrs
+  data_subnet_cidrs   = var.data_subnet_cidrs
 }
 
 module "iam" {
@@ -64,9 +64,10 @@ module "database" {
 }
 
 module "lambda" {
-  source      = "./modules/lambda"
-  environment = var.environment
-  aws_region  = var.aws_region
+  source              = "./modules/lambda"
+  environment         = var.environment
+  aws_region          = var.aws_region
+  ecr_mgmt_account_id = var.ecr_mgmt_account_id
 
   providers = {
     aws           = aws
