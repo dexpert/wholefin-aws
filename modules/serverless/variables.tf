@@ -16,3 +16,8 @@ variable "truthifi_lambda_url_hostname" {
   description = "Hostname of the truthifi-endpoint Lambda Function URL (without https:// and trailing slash)"
   type        = string
 }
+
+variable "test_edge_lambda_arn" {
+  description = "Qualified ARN of the test Lambda@Edge function (includes version)"
+  type        = string
+}

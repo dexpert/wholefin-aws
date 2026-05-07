@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source                = "hashicorp/aws"
+      configuration_aliases = [aws.us_east_1]
+    }
+  }
+}
+
 # ===================================================================
 # Lambda: truthifi-endpoint
 # PackageType: Image from mgmt ECR
@@ -71,6 +80,62 @@ resource "aws_iam_role_policy" "lambda_ecr" {
 
 # API_KEY and HMAC_SECRET are read at runtime from Secrets Manager
 # using keys TRUTHIFI_WEBHOOK_API_KEY and TRUTHIFI_WEBHOOK_HMAC_SECRET
+
+# ===================================================================
+# Lambda@Edge: test (us-east-1) - Origin Request for truthifi CloudFront
+# ===================================================================
+
+resource "aws_iam_role" "lambda_edge_role" {
+  provider = aws.us_east_1
+  name     = "LambdaEdge-Role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Service = [
+          "lambda.amazonaws.com",
+          "edgelambda.amazonaws.com"
+        ]
+      }
+      Action = "sts:AssumeRole"
+    }]
+  })
+
+  tags = {
+    Name        = "LambdaEdge-Role"
+    Environment = var.environment
+  }
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_edge_basic" {
+  provider   = aws.us_east_1
+  role       = aws_iam_role.lambda_edge_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+resource "aws_lambda_function" "test_edge" {
+  provider      = aws.us_east_1
+  function_name = "test"
+  role          = aws_iam_role.lambda_edge_role.arn
+  runtime       = "nodejs24.x"
+  handler       = "index.handler"
+  filename      = "${path.module}/test_edge.zip"
+  memory_size   = 128
+  timeout       = 3
+  architectures = ["x86_64"]
+  publish       = true # Lambda@Edge requires a published version
+
+  lifecycle {
+    ignore_changes = [filename, source_code_hash]
+  }
+
+  tags = {
+    Name        = "test"
+    Environment = var.environment
+  }
+}
 
 # ---------- CloudWatch Log Group ----------
 
